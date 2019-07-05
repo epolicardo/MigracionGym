@@ -8,6 +8,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using MigracionGym.Web.Data;
+    using MigracionGym.Web.Data.Entities;
 
     public class Startup
     {
@@ -22,10 +23,15 @@
         public void ConfigureServices(IServiceCollection services)
         {
 
+
             services.AddDbContext<DataContext>(cfg =>
             {
                 cfg.UseSqlServer(this.Configuration.GetConnectionString("ConexionPrincipal"));
             });
+
+
+            //TODO: Comentar en Produccion - Con esta linea se llama la alimentacion inicial de la base de datos. 
+            services.AddTransient<SeedDB>();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
