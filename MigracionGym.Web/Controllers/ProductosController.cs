@@ -1,12 +1,15 @@
-﻿namespace MigracionGym.Web.Controllers
-{
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-    using MigracionGym.Web.Data;
-    using MigracionGym.Web.Data.Entities;
-    using System.Linq;
-    using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using MigracionGym.Web.Data;
+using MigracionGym.Web.Data.Entities;
 
+namespace MigracionGym.Web.Controllers
+{
     public class ProductosController : Controller
     {
         private readonly DataContext _context;
@@ -51,7 +54,7 @@
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Precio,ImageURL,Stock")] Productos productos)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Precio,ImageURL,UltimaVenta,UltimaCompra,Stock")] Productos productos)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +86,7 @@
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Precio,ImageURL,Stock")] Productos productos)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Precio,ImageURL,UltimaVenta,UltimaCompra,Stock")] Productos productos)
         {
             if (id != productos.Id)
             {

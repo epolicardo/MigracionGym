@@ -13,10 +13,19 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Precio)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ImageURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UltimaVenta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UltimaCompra)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Stock)
@@ -28,10 +37,19 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Precio)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ImageURL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UltimaVenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UltimaCompra)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Stock)
