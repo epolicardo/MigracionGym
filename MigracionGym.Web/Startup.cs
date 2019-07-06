@@ -9,6 +9,8 @@
     using Microsoft.Extensions.DependencyInjection;
     using MigracionGym.Web.Data;
     using MigracionGym.Web.Data.Entities;
+    using MigracionGym.Web.Interfaces;
+    using MigracionGym.Web.Repositorios;
 
     public class Startup
     {
@@ -31,7 +33,10 @@
 
 
             //TODO: Comentar en Produccion - Con esta linea se llama la alimentacion inicial de la base de datos. 
+            //Ciclo de vida corto, se ejecuta y destruye
             services.AddTransient<SeedDB>();
+            //Ciclo de vida largo, continua durante la ejecucion de la aplicacion.
+            services.AddScoped<IRepositorio, Repositorio>();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
