@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{EB40
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{3DC507CE-0303-4EDF-A196-8C5DF678B7B0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MigracionGym.Web", "MigracionGym.Web\MigracionGym.Web.csproj", "{E3F18CB3-13A9-4375-A5A9-010AF0BCF4CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MigracionGym.Web", "MigracionGym.Web\MigracionGym.Web.csproj", "{E3F18CB3-13A9-4375-A5A9-010AF0BCF4CC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Forms", "Forms", "{2B763713-E758-4553-AEDA-6C9A93671C51}"
 EndProject
@@ -17,13 +17,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MigracionGym.UI.Forms.Andro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MigracionGym.UI.Forms.iOS", "MigracionGym.UI.Forms\MigracionGym.UI.Forms.iOS\MigracionGym.UI.Forms.iOS.csproj", "{63579F2B-6DFB-4519-8230-7F6F4DC7D40A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MigracionGym.UI.Forms", "MigracionGym.UI.Forms\MigracionGym.UI.Forms\MigracionGym.UI.Forms.csproj", "{A1C95828-BF5E-43B5-926A-78842CBE0D2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MigracionGym.UI.Forms", "MigracionGym.UI.Forms\MigracionGym.UI.Forms\MigracionGym.UI.Forms.csproj", "{A1C95828-BF5E-43B5-926A-78842CBE0D2A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MigracionGym.UI.Classic", "MigracionGym.UI.Classic\MigracionGym.UI.Classic.csproj", "{22CB82BA-9B9F-41BC-9FAB-E807E0837EC0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MigracionGym.UI.Classic", "MigracionGym.UI.Classic\MigracionGym.UI.Classic.csproj", "{22CB82BA-9B9F-41BC-9FAB-E807E0837EC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MigracionGym.UI.Classic.Android", "MigracionGym.UI.Classic.Android\MigracionGym.UI.Classic.Android.csproj", "{A2070480-2A93-489A-81DF-60B6ED3D1208}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MigracionGym.UI.Classic.iOS", "MigracionGym.UI.Classic.iOS\MigracionGym.UI.Classic.iOS.csproj", "{B15AE7E7-922E-4F43-8755-7D5F78955D12}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MigracionGym.Common", "MigracionGym.Common\MigracionGym.Common.csproj", "{87D5ED6A-42FC-4DD5-A533-D27087B9D6C4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MigracionGym.Common", "MigracionGym.Common\MigracionGym.Common.csproj", "{87D5ED6A-42FC-4DD5-A533-D27087B9D6C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,24 @@ Global
 		{22CB82BA-9B9F-41BC-9FAB-E807E0837EC0}.Release|iPhone.Build.0 = Release|Any CPU
 		{22CB82BA-9B9F-41BC-9FAB-E807E0837EC0}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{22CB82BA-9B9F-41BC-9FAB-E807E0837EC0}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{A2070480-2A93-489A-81DF-60B6ED3D1208}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2070480-2A93-489A-81DF-60B6ED3D1208}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2070480-2A93-489A-81DF-60B6ED3D1208}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A2070480-2A93-489A-81DF-60B6ED3D1208}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{A2070480-2A93-489A-81DF-60B6ED3D1208}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{A2070480-2A93-489A-81DF-60B6ED3D1208}.Debug|iPhone.Deploy.0 = Debug|Any CPU
+		{A2070480-2A93-489A-81DF-60B6ED3D1208}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{A2070480-2A93-489A-81DF-60B6ED3D1208}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{A2070480-2A93-489A-81DF-60B6ED3D1208}.Debug|iPhoneSimulator.Deploy.0 = Debug|Any CPU
+		{A2070480-2A93-489A-81DF-60B6ED3D1208}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2070480-2A93-489A-81DF-60B6ED3D1208}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2070480-2A93-489A-81DF-60B6ED3D1208}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A2070480-2A93-489A-81DF-60B6ED3D1208}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{A2070480-2A93-489A-81DF-60B6ED3D1208}.Release|iPhone.Build.0 = Release|Any CPU
+		{A2070480-2A93-489A-81DF-60B6ED3D1208}.Release|iPhone.Deploy.0 = Release|Any CPU
+		{A2070480-2A93-489A-81DF-60B6ED3D1208}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{A2070480-2A93-489A-81DF-60B6ED3D1208}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{A2070480-2A93-489A-81DF-60B6ED3D1208}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
 		{B15AE7E7-922E-4F43-8755-7D5F78955D12}.Debug|Any CPU.ActiveCfg = Debug|iPhone
 		{B15AE7E7-922E-4F43-8755-7D5F78955D12}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{B15AE7E7-922E-4F43-8755-7D5F78955D12}.Debug|iPhone.Build.0 = Debug|iPhone
@@ -133,6 +153,7 @@ Global
 		{63579F2B-6DFB-4519-8230-7F6F4DC7D40A} = {2B763713-E758-4553-AEDA-6C9A93671C51}
 		{A1C95828-BF5E-43B5-926A-78842CBE0D2A} = {2B763713-E758-4553-AEDA-6C9A93671C51}
 		{22CB82BA-9B9F-41BC-9FAB-E807E0837EC0} = {9718EAAE-EAEC-4454-BE95-FE1FAB9C60DF}
+		{A2070480-2A93-489A-81DF-60B6ED3D1208} = {9718EAAE-EAEC-4454-BE95-FE1FAB9C60DF}
 		{B15AE7E7-922E-4F43-8755-7D5F78955D12} = {9718EAAE-EAEC-4454-BE95-FE1FAB9C60DF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

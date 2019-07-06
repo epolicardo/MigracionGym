@@ -1,11 +1,13 @@
-﻿namespace MigracionGym.Web.Controllers
-{
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-    using MigracionGym.Web.Data.Entities;
-    using MigracionGym.Web.Interfaces;
-    using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MigracionGym.Web.Data.Entities;
+using MigracionGym.Web.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
+namespace MigracionGym.Web.Controllers
+{
     public class ProductosController : Controller
     {
         private readonly IRepositorio repositorio;
@@ -79,7 +81,7 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Productos productos)
         {
-
+            
             if (ModelState.IsValid)
             {
                 try
