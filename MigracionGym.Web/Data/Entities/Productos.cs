@@ -26,5 +26,8 @@ namespace MigracionGym.Web.Data.Entities
         public DateTime? UltimaCompra { get; set; }
 
         public Double Stock { get; set; }
+
+        //Un usuario tienen muchos productos. Solo se añade en el lado varios de la relacion.
+        public Usuarios usuario { get; set; }
     }
 }
