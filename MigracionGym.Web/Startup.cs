@@ -8,7 +8,6 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using MigracionGym.Web.Data;
-    using MigracionGym.Web.Data.Entities;
 
     public class Startup
     {
@@ -32,10 +31,14 @@
 
             //TODO: Comentar en Produccion - Con esta linea se llama la alimentacion inicial de la base de datos. 
             //Ciclo de vida corto, se ejecuta y destruye
-            services.AddTransient<SeedDB>();
+            // services.AddTransient<SeedDB>();
 
             //Ciclo de vida largo, continua durante la ejecucion de la aplicacion.
-            services.AddScoped<IRepositorio, Repositorio>();
+
+            //TODO: Agregar la inyeccion de cada modelo, a travez de su interfaz y repositorio.
+            services.AddScoped<IRepositorioProductos, RepositorioProductos>();
+            services.AddScoped<IRepositorioLocalidades, RepositorioLocalidades>();
+            services.AddScoped<I_R_Provincias, R_Provincias>();
             services.AddScoped<IUserHelper, UserHelper>();
             services.Configure<CookiePolicyOptions>(options =>
             {

@@ -2,7 +2,7 @@
 {
     using Entities;
 
-    internal interface IRepositorioLocalidades : IRepositorioGenerico<Localidades>
+    public interface IRepositorioLocalidades : IRepositorioGenerico<Localidades>
     {
     }
 }

@@ -9,6 +9,7 @@
         public DbSet<Productos> Productos { get; set; }
         public DbSet<Estados> Estados { get; set; }
         public DbSet<Localidades> Localidades { get; set; }
+        public DbSet<Provincias> Provincias { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {

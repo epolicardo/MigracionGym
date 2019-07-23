@@ -1,108 +1,96 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using MigracionGym.Web.Data;
-using MigracionGym.Web.Data.Entities;
-
-namespace MigracionGym.Web.Controllers
+﻿namespace MigracionGym.Web.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using MigracionGym.Web.Data;
+    using System.Threading.Tasks;
+    using Web.Data.Entities;
+
     public class LocalidadesController : Controller
     {
-        private readonly DataContext _context;
+        private readonly IRepositorioLocalidades repositorio;
+        
 
-        public LocalidadesController(DataContext context)
+        public LocalidadesController(IRepositorioLocalidades repositorio)
         {
-            _context = context;
+            this.repositorio = repositorio;
+        
         }
 
-        // GET: Localidades
-        public async Task<IActionResult> Index()
+        // GET: Productos
+        public IActionResult Index()
         {
-            return View(await _context.Localidades.ToListAsync());
+            return View(this.repositorio.GetAll());
         }
 
-        // GET: Localidades/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: Productos/Details/5
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var localidades = await _context.Localidades
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (localidades == null)
+            var objeto = this.repositorio.GetByIdAsync(id.Value);
+            if (objeto == null)
             {
                 return NotFound();
             }
 
-            return View(localidades);
+            return View(objeto);
         }
 
-        // GET: Localidades/Create
+        // GET: Productos/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Localidades/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Productos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id")] Localidades localidades)
+        public async Task<IActionResult> Create(Localidades localidad)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(localidades);
-                await _context.SaveChangesAsync();
+                await this.repositorio.CreateAsync(localidad);
                 return RedirectToAction(nameof(Index));
             }
-            return View(localidades);
+            return View(localidad);
         }
 
-        // GET: Localidades/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Productos/Edit/5
+        public async Task<IActionResult> EditAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var localidades = await _context.Localidades.FindAsync(id);
-            if (localidades == null)
+            var objeto = await this.repositorio.GetByIdAsync(id.Value);
+            if (objeto == null)
             {
                 return NotFound();
             }
-            return View(localidades);
+            return View(objeto);
         }
 
-        // POST: Localidades/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Productos/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id")] Localidades localidades)
+        public async Task<IActionResult> Edit(Localidades objeto)
         {
-            if (id != localidades.Id)
-            {
-                return NotFound();
-            }
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(localidades);
-                    await _context.SaveChangesAsync();
+                    //TODO: Cambiar por usuario logueado
+                    await this.repositorio.UpdateAsync(objeto);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LocalidadesExists(localidades.Id))
+                    if (!await this.repositorio.ExistsAsync(objeto.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +101,11 @@ namespace MigracionGym.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(localidades);
+            return View(objeto);
         }
 
-        // GET: Localidades/Delete/5
+        // GET: Productos/Delete/5
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +113,28 @@ namespace MigracionGym.Web.Controllers
                 return NotFound();
             }
 
-            var localidades = await _context.Localidades
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (localidades == null)
+            var objeto = await this.repositorio.GetByIdAsync(id.Value);
+            if (objeto == null)
             {
                 return NotFound();
             }
 
-            return View(localidades);
+            return View(objeto);
         }
 
-        // POST: Localidades/Delete/5
+        // POST: Productos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var localidades = await _context.Localidades.FindAsync(id);
-            _context.Localidades.Remove(localidades);
-            await _context.SaveChangesAsync();
+            var objeto = await this.repositorio.GetByIdAsync(id);
+            await this.repositorio.DeleteAsync(objeto);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool LocalidadesExists(int id)
+        private async Task<bool> ExistsAsync(int id)
         {
-            return _context.Localidades.Any(e => e.Id == id);
+            return await this.repositorio.ExistsAsync(id);
         }
     }
 }

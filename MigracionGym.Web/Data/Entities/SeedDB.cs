@@ -40,29 +40,30 @@
                     Email = "emilianopolicardo@gmail.com",
                     UserName = "emilianopolicardo@gmail.com"
                 };
-            }
 
-            var result = await this.userHelper.AddUserAsync(user, "123456");
-            if (result != IdentityResult.Success)
-            {
-                throw new InvalidOperationException("No se pudo crear el usuario en el seeder");
-            }
 
-            // Chequea la existencia de algun registro en la coleccion Productos
-            if (!this.context.Productos.Any())
-            {
-                this.AddProduct("Iphone 6", user);
-                this.AddProduct("Iphone X", user);
-                this.AddProduct("Iphone 5", user);
-                this.AddProduct("Iphone 4", user);
-                // Realiza el guardado en la base de datos de forma asincrona.
-                await this.context.SaveChangesAsync();
-            }
-            if (!this.context.Estados.Any())
-            {
-                this.AddEstado("Activo");
-                this.AddEstado("Inactivo");
-                await this.context.SaveChangesAsync();
+                var result = await this.userHelper.AddUserAsync(user, "123456");
+                if (result != IdentityResult.Success)
+                {
+                    throw new InvalidOperationException("No se pudo crear el usuario en el seeder");
+                }
+
+                // Chequea la existencia de algun registro en la coleccion Productos
+                if (!this.context.Productos.Any())
+                {
+                    this.AddProduct("Iphone 6", user);
+                    this.AddProduct("Iphone X", user);
+                    this.AddProduct("Iphone 5", user);
+                    this.AddProduct("Iphone 4", user);
+                    // Realiza el guardado en la base de datos de forma asincrona.
+                    await this.context.SaveChangesAsync();
+                }
+                if (!this.context.Estados.Any())
+                {
+                    this.AddEstado("Activo");
+                    this.AddEstado("Inactivo");
+                    await this.context.SaveChangesAsync();
+                }
             }
 
         }

@@ -8,10 +8,10 @@
 
     public class ProductosController : Controller
     {
-        private readonly IRepositorio repositorio;
+        private readonly IRepositorioProductos repositorio;
         private readonly IUserHelper userHelper;
 
-        public ProductosController(IRepositorio repositorio, IUserHelper userHelper)
+        public ProductosController(IRepositorioProductos repositorio, IUserHelper userHelper)
         {
             this.repositorio = repositorio;
             this.userHelper = userHelper;
@@ -20,7 +20,7 @@
         // GET: Productos
         public IActionResult Index()
         {
-            return View(this.repositorio.GetProductos());
+            return View(this.repositorio.GetAll());
         }
 
         // GET: Productos/Details/5
@@ -31,7 +31,7 @@
                 return NotFound();
             }
 
-            var productos = this.repositorio.GetProducto(id.Value);
+            var productos = this.repositorio.GetByIdAsync(id.Value);
             if (productos == null)
             {
                 return NotFound();
@@ -49,29 +49,27 @@
         // POST: Productos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Productos productos)
+        public async Task<IActionResult> Create(Productos producto)
         {
             if (ModelState.IsValid)
             {
                 //TODO: Cambiar por usuario logueado
-                productos.usuario = await this.userHelper.GetUserByEmailAsync("emilianopolicardo@gmail.com");
-
-                this.repositorio.AddProduct(productos);
-                await this.repositorio.SaveAllAsync();
+                producto.usuario = await this.userHelper.GetUserByEmailAsync("emilianopolicardo@gmail.com");
+                await this.repositorio.CreateAsync(producto);
                 return RedirectToAction(nameof(Index));
             }
-            return View(productos);
+            return View(producto);
         }
 
         // GET: Productos/Edit/5
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> EditAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var productos = this.repositorio.GetProducto(id.Value);
+            var productos = await this.repositorio.GetByIdAsync(id.Value);
             if (productos == null)
             {
                 return NotFound();
@@ -91,13 +89,11 @@
                 {
                     //TODO: Cambiar por usuario logueado
                     productos.usuario = await this.userHelper.GetUserByEmailAsync("emilianopolicardo@gmail.com");
-                    this.repositorio.UpdateProduct(productos);
-                    await this.repositorio.SaveAllAsync();
-
+                    await this.repositorio.UpdateAsync(productos);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!this.repositorio.ExistsProduct(productos.Id))
+                    if (!await this.repositorio.ExistsAsync(productos.Id))
                     {
                         return NotFound();
                     }
@@ -112,6 +108,7 @@
         }
 
         // GET: Productos/Delete/5
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -119,7 +116,7 @@
                 return NotFound();
             }
 
-            var productos = this.repositorio.GetProducto(id.Value);
+            var productos = await this.repositorio.GetByIdAsync(id.Value);
             if (productos == null)
             {
                 return NotFound();
@@ -133,15 +130,14 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var productos = this.repositorio.GetProducto(id);
-            this.repositorio.RemoveProduct(productos);
-            await this.repositorio.SaveAllAsync();
+            var producto = await this.repositorio.GetByIdAsync(id);
+            await this.repositorio.DeleteAsync(producto);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProductosExists(int id)
+        private async Task<bool> ProductosExistsAsync(int id)
         {
-            return this.repositorio.ExistsProduct(id);
+            return await this.repositorio.ExistsAsync(id);
         }
     }
 }
