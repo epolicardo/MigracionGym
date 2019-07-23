@@ -1,6 +1,8 @@
 ﻿namespace MigracionGym.Web.Data.Entities
 {
-    public class Estados
+using MigracionGym.Data.Entities;
+
+    public class Estados : IEntity
     {
         public int Id { get; set; }
         public string Estado { get; set; }

@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MigracionGym.Web.Data.Entities
+﻿namespace MigracionGym.Web.Data.Entities
 {
-    public class Productos
+    using MigracionGym.Data.Entities;
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
+    public class Productos : IEntity
     {
         public int Id { get; set; }
+
         [MaxLength(50)]
         [Required]
         public String Nombre { get; set; }
@@ -17,14 +16,21 @@ namespace MigracionGym.Web.Data.Entities
         public decimal Precio { get; set; }
 
         [Display(Name = "Image")]
-        public String  ImageURL { get; set; }
+        public String ImageURL { get; set; }
 
-        [Display(Name ="Ultima Venta")]
+        [Display(Name = "Ultima Venta")]
         public DateTime? UltimaVenta { get; set; }
 
-        [Display(Name ="Ultima Compra")]
+        [Display(Name = "Ultima Compra")]
         public DateTime? UltimaCompra { get; set; }
 
+        //TODO: Cambiar nombres a cosas genericas, mismo idioma para todo.
+        //Ahondar en el i18n, como hacer que la app use traducciones como en HospitalRun
+        [Display(Name = "Is available?")]
+        public bool IsAvailable { get; set; }
+
         public Double Stock { get; set; }
+
+        public Usuarios usuario { get; set; }
     }
 }

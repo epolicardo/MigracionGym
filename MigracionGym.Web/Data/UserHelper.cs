@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using MigracionGym.Web.Data.Entities;
-
-namespace MigracionGym.Web.Helpers
+﻿namespace MigracionGym.Web.Data
 {
+using Microsoft.AspNetCore.Identity;
+using Entities;
+using System.Threading.Tasks;
+
     public class UserHelper : IUserHelper
     {
         private readonly UserManager<Usuarios> userManager;

@@ -10,8 +10,8 @@ using MigracionGym.Web.Data;
 namespace MigracionGym.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190705220725_Armando el Seeder1")]
-    partial class ArmandoelSeeder1
+    [Migration("20190723144340_Repositorio Generico - Video 12")]
+    partial class RepositorioGenericoVideo12
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,6 +40,8 @@ namespace MigracionGym.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Name");
+
                     b.HasKey("Id");
 
                     b.ToTable("Localidades");
@@ -53,6 +55,8 @@ namespace MigracionGym.Web.Migrations
 
                     b.Property<string>("ImageURL");
 
+                    b.Property<bool>("IsAvailable");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(50);
@@ -65,9 +69,62 @@ namespace MigracionGym.Web.Migrations
 
                     b.Property<DateTime?>("UltimaVenta");
 
+                    b.Property<string>("usuarioId");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("usuarioId");
+
                     b.ToTable("Productos");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Usuarios", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AccessFailedCount");
+
+                    b.Property<string>("Apellido");
+
+                    b.Property<string>("ConcurrencyStamp");
+
+                    b.Property<string>("Email");
+
+                    b.Property<bool>("EmailConfirmed");
+
+                    b.Property<bool>("LockoutEnabled");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("Nombre");
+
+                    b.Property<string>("NormalizedEmail");
+
+                    b.Property<string>("NormalizedUserName");
+
+                    b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("SecurityStamp");
+
+                    b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Usuarios");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Productos", b =>
+                {
+                    b.HasOne("MigracionGym.Web.Data.Entities.Usuarios", "usuario")
+                        .WithMany()
+                        .HasForeignKey("usuarioId");
                 });
 #pragma warning restore 612, 618
         }

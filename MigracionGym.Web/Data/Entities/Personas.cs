@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MigracionGym.Web.Data.Entities
+﻿namespace MigracionGym.Web.Data.Entities
 {
-    public class Personas
+    using MigracionGym.Data.Entities;
+    using System;
+
+    public class Personas : IEntity
     {
         public int Id { get; set; }
         public String Nombre { get; set; }

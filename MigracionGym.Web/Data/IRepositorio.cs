@@ -1,6 +1,6 @@
-﻿namespace MigracionGym.Web.Interfaces
+﻿namespace MigracionGym.Web.Data
 {
-    using MigracionGym.Web.Data.Entities;
+    using Data.Entities;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 

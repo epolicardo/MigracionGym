@@ -1,20 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MigracionGym.Web.Data.Entities;
-using MigracionGym.Web.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MigracionGym.Web.Controllers
+﻿namespace MigracionGym.Web.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using MigracionGym.Web.Data;
+    using System.Threading.Tasks;
+    using Web.Data.Entities;
+
     public class ProductosController : Controller
     {
         private readonly IRepositorio repositorio;
+        private readonly IUserHelper userHelper;
 
-        public ProductosController(IRepositorio repositorio)
+        public ProductosController(IRepositorio repositorio, IUserHelper userHelper)
         {
             this.repositorio = repositorio;
+            this.userHelper = userHelper;
         }
 
         // GET: Productos
@@ -53,6 +53,9 @@ namespace MigracionGym.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                //TODO: Cambiar por usuario logueado
+                productos.usuario = await this.userHelper.GetUserByEmailAsync("emilianopolicardo@gmail.com");
+
                 this.repositorio.AddProduct(productos);
                 await this.repositorio.SaveAllAsync();
                 return RedirectToAction(nameof(Index));
@@ -81,11 +84,13 @@ namespace MigracionGym.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Productos productos)
         {
-            
+
             if (ModelState.IsValid)
             {
                 try
                 {
+                    //TODO: Cambiar por usuario logueado
+                    productos.usuario = await this.userHelper.GetUserByEmailAsync("emilianopolicardo@gmail.com");
                     this.repositorio.UpdateProduct(productos);
                     await this.repositorio.SaveAllAsync();
 

@@ -1,7 +1,6 @@
 ﻿namespace MigracionGym.Web.Data.Entities
 {
     using Microsoft.AspNetCore.Identity;
-    using MigracionGym.Web.Helpers;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
@@ -89,7 +88,9 @@
             {
                 Nombre = nombre,
                 Stock = this.random.Next(1, 10),
-                ImageURL = "//images/" + nombre
+                ImageURL = "//images/" + nombre,
+                usuario = user
+
             });
         }
 

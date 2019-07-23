@@ -9,9 +9,6 @@
     using Microsoft.Extensions.DependencyInjection;
     using MigracionGym.Web.Data;
     using MigracionGym.Web.Data.Entities;
-    using MigracionGym.Web.Helpers;
-    using MigracionGym.Web.Interfaces;
-    using MigracionGym.Web.Repositorios;
 
     public class Startup
     {

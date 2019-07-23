@@ -1,4 +1,4 @@
-﻿namespace MigracionGym.Web.Helpers
+﻿namespace MigracionGym.Web.Data
 {
     using Microsoft.AspNetCore.Identity;
     using MigracionGym.Web.Data.Entities;

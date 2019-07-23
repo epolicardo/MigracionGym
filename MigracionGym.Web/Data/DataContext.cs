@@ -1,9 +1,10 @@
 ﻿namespace MigracionGym.Web.Data
 {
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using MigracionGym.Web.Data.Entities;
 
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<Usuarios>
     {
         public DbSet<Productos> Productos { get; set; }
         public DbSet<Estados> Estados { get; set; }
