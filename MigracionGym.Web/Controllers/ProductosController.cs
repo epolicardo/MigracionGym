@@ -1,8 +1,10 @@
 ﻿namespace MigracionGym.Web.Controllers
 {
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using MigracionGym.Web.Data;
+    using System;
     using System.Threading.Tasks;
     using Web.Data.Entities;
 
@@ -54,9 +56,25 @@
             if (ModelState.IsValid)
             {
                 //TODO: Cambiar por usuario logueado
-                producto.usuario = await this.userHelper.GetUserByEmailAsync("emilianopolicardo@gmail.com");
-                await this.repositorio.CreateAsync(producto);
-                return RedirectToAction(nameof(Index));
+                var user = await this.userHelper.GetUserByEmailAsync("emilianopolicardo@gmail.com");
+
+                if (user == null)
+                {
+                    user = new Usuarios
+                    {
+                        Apellido = "Policardo",
+                        Nombre = "Emiliano",
+                        Email = "emilianopolicardo@gmail.com",
+                        UserName = "emilianopolicardo@gmail.com"
+                    };
+
+
+                    var result = await this.userHelper.AddUserAsync(user, "123456");
+                    
+
+                    await this.repositorio.CreateAsync(producto);
+                    return RedirectToAction(nameof(Index));
+                }
             }
             return View(producto);
         }
@@ -88,7 +106,7 @@
                 try
                 {
                     //TODO: Cambiar por usuario logueado
-                    productos.usuario = await this.userHelper.GetUserByEmailAsync("emilianopolicardo@gmail.com");
+                   // productos.usuario = await this.userHelper.GetUserByEmailAsync("emilianopolicardo@gmail.com");
                     await this.repositorio.UpdateAsync(productos);
                 }
                 catch (DbUpdateConcurrencyException)

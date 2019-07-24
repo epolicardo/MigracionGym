@@ -3,11 +3,13 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using MigracionGym.Web.Data;
+    using MigracionGym.Web.Data.Entities;
 
     public class Startup
     {
@@ -21,7 +23,11 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddIdentity<Usuarios, IdentityRole>(cfg =>
+            {
+                cfg.User.RequireUniqueEmail = true;
+                cfg.Password.RequiredLength = 6;
+            }).AddEntityFrameworkStores<DataContext>();
 
             services.AddDbContext<DataContext>(cfg =>
             {
@@ -31,7 +37,7 @@
 
             //TODO: Comentar en Produccion - Con esta linea se llama la alimentacion inicial de la base de datos. 
             //Ciclo de vida corto, se ejecuta y destruye
-            // services.AddTransient<SeedDB>();
+            services.AddTransient<SeedDB>();
 
             //Ciclo de vida largo, continua durante la ejecucion de la aplicacion.
 
@@ -68,7 +74,7 @@
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
