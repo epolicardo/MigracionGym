@@ -2,7 +2,8 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using MigracionGym.Web.Data;
-    using System.Collections.Generic;
+    using MigracionGym.Web.Data.Entities;
+    using System.Threading.Tasks;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -23,18 +24,20 @@
             return Ok(this.repositorioProductos.GetAll());
         }
 
-        //// GET: api/Productos/5
-        //[HttpGet("{id}", Name = "Get")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        //GET: api/Productos/5
+        [HttpGet("{id}", Name = "Get")]
+        public Task<Productos> Get(int id)
+        {
+            return this.repositorioProductos.GetByIdAsync(id);
 
-        //// POST: api/Productos
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
+        }
+
+        // POST: api/Productos
+        [HttpPost]
+        public void Post(string value)
+        {
+
+        }
 
         //// PUT: api/Productos/5
         //[HttpPut("{id}")]
