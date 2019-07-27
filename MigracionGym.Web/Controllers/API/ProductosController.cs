@@ -21,7 +21,7 @@
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(this.repositorioProductos.GetAll());
+            return Ok(this.repositorioProductos.GetAllWithUsers());
         }
 
         //GET: api/Productos/5

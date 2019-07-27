@@ -43,6 +43,8 @@
 
 
                 var result = await this.userHelper.AddUserAsync(user, "123456");
+                await this.context.SaveChangesAsync();
+
                 if (result != IdentityResult.Success)
                 {
                     throw new InvalidOperationException("No se pudo crear el usuario en el seeder");

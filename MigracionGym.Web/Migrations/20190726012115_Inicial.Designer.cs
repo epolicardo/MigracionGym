@@ -10,8 +10,8 @@ using MigracionGym.Web.Data;
 namespace MigracionGym.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190724131810_Primero")]
-    partial class Primero
+    [Migration("20190726012115_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

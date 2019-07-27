@@ -32,5 +32,17 @@
         public Double Stock { get; set; }
 
         public Usuarios usuario { get; set; }
+
+        public string ImageFullPath
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.ImageURL))
+                {
+                    return null;
+                }
+                return $"https://localhost:44365/{this.ImageURL.Substring(1)}";
+            }
+        }
     }
 }
