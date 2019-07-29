@@ -1,14 +1,6 @@
 ﻿@model IEnumerable<MigracionGym.Web.Data.Entities.Productos>
 
-@{
-    ViewData["Title"] = "Index";
-}
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -72,3 +64,6 @@
 }
     </tbody>
 </table>
+<p class="">
+    <a asp-action="Create" class="btn btn-primary">Crear</a>
+</p>
