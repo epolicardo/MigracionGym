@@ -3,9 +3,9 @@
     using MigracionGym.Data;
     using Entities;
 
-    public class R_Provincias : RepositorioGenerico<Provincias>, I_R_Provincias
+    public class Repositorio_Proveedores : Repositorio_Generico<Proveedores>, IRepositorio_Proveedores
     {
-        public R_Provincias(DataContext context) : base(context)
+        public Repositorio_Proveedores(DataContext context) : base(context)
         {
         }
     }

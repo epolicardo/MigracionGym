@@ -3,9 +3,9 @@
     using MigracionGym.Data;
     using MigracionGym.Web.Data.Entities;
 
-    public class RepositorioCompras : RepositorioGenerico<Compras>, IRepositorioCompras
+    public class Repositorio_Compras : Repositorio_Generico<Compras>, IRepositorio_Compras
     {
-        public RepositorioCompras(DataContext context) : base(context)
+        public Repositorio_Compras(DataContext context) : base(context)
         {
         }
     }

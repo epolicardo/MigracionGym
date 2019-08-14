@@ -4,9 +4,9 @@
     using Entities;
     using MigracionGym.Data;
 
-    public class RepositorioLocalidades : RepositorioGenerico<Localidades>, IRepositorioLocalidades
+    public class Repositorio_Localidades : Repositorio_Generico<Localidades>, IRepositorio_Localidades
     {
-        public RepositorioLocalidades(DataContext context) : base(context)
+        public Repositorio_Localidades(DataContext context) : base(context)
         {
         }
     }

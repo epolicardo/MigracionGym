@@ -6,11 +6,11 @@
     using System.Threading.Tasks;
     using Web.Data;
 
-    public class RepositorioGenerico<T> : IRepositorioGenerico<T> where T : class, IEntity
+    public class Repositorio_Generico<T> : IRepositorio_Generico<T> where T : class, IEntity
     {
         private readonly DataContext context;
 
-        public RepositorioGenerico(DataContext context)
+        public Repositorio_Generico(DataContext context)
         {
             this.context = context;
         }

@@ -5,11 +5,11 @@
     using Microsoft.EntityFrameworkCore;
     using MigracionGym.Data;
 
-    public class RepositorioProductos : RepositorioGenerico<Productos>, IRepositorioProductos
+    public class Repositorio_Productos : Repositorio_Generico<Productos>, IRepositorio_Productos
     {
         private readonly DataContext context;
 
-        public RepositorioProductos(DataContext context) : base(context)
+        public Repositorio_Productos(DataContext context) : base(context)
         {
             this.context = context;
         }
