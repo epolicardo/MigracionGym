@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MigracionGym.Web.Data.Entities
 {
-    public class ActividadesSociosTurnos
+    public class ActividadesSociosTurnos : Ientity
     {
         private int idRelacion;
         private Socios socio;

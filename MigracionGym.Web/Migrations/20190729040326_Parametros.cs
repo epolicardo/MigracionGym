@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MigracionGym.Web.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class Parametros : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -73,6 +73,21 @@ namespace MigracionGym.Web.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Localidades", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "parametro",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    parametro = table.Column<string>(nullable: true),
+                    valor = table.Column<int>(nullable: false),
+                    valorString = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_parametro", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -287,6 +302,9 @@ namespace MigracionGym.Web.Migrations
 
             migrationBuilder.DropTable(
                 name: "Localidades");
+
+            migrationBuilder.DropTable(
+                name: "parametro");
 
             migrationBuilder.DropTable(
                 name: "Productos");

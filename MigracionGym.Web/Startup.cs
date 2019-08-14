@@ -32,6 +32,7 @@
                 cfg.Password.RequireLowercase = false;
                 cfg.Password.RequireNonAlphanumeric = false;
                 cfg.Password.RequireUppercase = false;
+                //cfg.Lockout.MaxFailedAccessAttempts = 10;
           
             }).AddEntityFrameworkStores<DataContext>();
 

@@ -29,48 +29,108 @@
         {
             await this.context.Database.EnsureCreatedAsync();
 
-            var user = await this.userHelper.GetUserByEmailAsync("emilianopolicardo@gmail.com");
+            //ParametrosSistema nuevoParametro = new ParametrosSistema();
 
-            if (user == null)
-            {
-                user = new Usuarios
+
+            //for (int i = 0; i < 11; i++)
+            //{
+            //    switch (i)
+            //    {
+            //        case 1:
+            //            nuevoParametro.parametro = "nombreEmpresa";
+            //            SetearParametrosIniciales(nuevoParametro);
+            //            break;
+            //        case 2:
+            //            nuevoParametro.parametro = "imagenEmpresa";
+            //            SetearParametrosIniciales(nuevoParametro);
+            //            break;
+            //        case 3:
+            //            nuevoParametro.parametro = "horasAsistencias";
+            //            SetearParametrosIniciales(nuevoParametro);
+            //            break;
+            //        case 4:
+            //            nuevoParametro.parametro = "mysqldump";
+            //            SetearParametrosIniciales(nuevoParametro);
+            //            break;
+            //        case 5:
+            //            nuevoParametro.parametro = "cantidadMovimientos";
+            //            SetearParametrosIniciales(nuevoParametro);
+            //            break;
+            //        case 6:
+            //            nuevoParametro.parametro = "estadoCaja";
+            //            SetearParametrosIniciales(nuevoParametro);
+            //            break;
+            //        case 7:
+            //            nuevoParametro.parametro = "equipoDB";
+            //            SetearParametrosIniciales(nuevoParametro);
+            //            break;
+            //        case 8:
+            //            nuevoParametro.parametro = "equipoAcceso";
+            //            SetearParametrosIniciales(nuevoParametro);
+            //            break;
+            //        case 9:
+            //            nuevoParametro.parametro = "diasVigencia";
+            //            SetearParametrosIniciales(nuevoParametro);
+            //            break;
+            //        case 10:
+            //            nuevoParametro.parametro = "avisoVencimientos";
+            //            SetearParametrosIniciales(nuevoParametro);
+            //            break;
+            //    }
+
+                var user = await this.userHelper.GetUserByEmailAsync("emilianopolicardo@gmail.com");
+
+                if (user == null)
                 {
-                    Apellido = "Policardo",
-                    Nombre = "Emiliano",
-                    Email = "emilianopolicardo@gmail.com",
-                    UserName = "emilianopolicardo@gmail.com"
-                };
+                    user = new Usuarios
+                    {
+                        Apellido = "Policardo",
+                        Nombre = "Emiliano",
+                        Email = "emilianopolicardo@gmail.com",
+                        UserName = "emilianopolicardo@gmail.com"
+                    };
 
 
-                var result = await this.userHelper.AddUserAsync(user, "123456");
-                await this.context.SaveChangesAsync();
-
-                if (result != IdentityResult.Success)
-                {
-                    throw new InvalidOperationException("No se pudo crear el usuario en el seeder");
-                }
-
-                // Chequea la existencia de algun registro en la coleccion Productos
-                if (!this.context.Productos.Any())
-                {
-                    this.AddProduct("Iphone 6", user);
-                    this.AddProduct("Iphone X", user);
-                    this.AddProduct("Iphone 5", user);
-                    this.AddProduct("Iphone 4", user);
-                    // Realiza el guardado en la base de datos de forma asincrona.
+                    var result = await this.userHelper.AddUserAsync(user, "123456");
                     await this.context.SaveChangesAsync();
+
+                    if (result != IdentityResult.Success)
+                    {
+                        throw new InvalidOperationException("No se pudo crear el usuario en el seeder");
+                    }
+
+                    // Chequea la existencia de algun registro en la coleccion Productos
+                    if (!this.context.Productos.Any())
+                    {
+                        this.AddProduct("Iphone 6", user);
+                        this.AddProduct("Iphone X", user);
+                        this.AddProduct("Iphone 5", user);
+                        this.AddProduct("Iphone 4", user);
+                        // Realiza el guardado en la base de datos de forma asincrona.
+                        await this.context.SaveChangesAsync();
+                    }
+                    if (!this.context.Estados.Any())
+                    {
+                        this.AddEstado("Activo");
+                        this.AddEstado("Inactivo");
+                        await this.context.SaveChangesAsync();
+                    }
                 }
-                if (!this.context.Estados.Any())
-                {
-                    this.AddEstado("Activo");
-                    this.AddEstado("Inactivo");
-                    await this.context.SaveChangesAsync();
-                }
+
             }
-
+                        
+        
+        private void SetearParametrosIniciales(ParametrosSistema nuevoParametro)
+        {
+            this.context.parametro.Add(new ParametrosSistema
+            {
+                valor = nuevoParametro.valor,
+                valorString = nuevoParametro.valorString,
+                parametro = nuevoParametro.parametro
+            });
+            this.context.SaveChangesAsync();
+        
         }
-
-
 
         private void AddEstado(string Estado)
         {
@@ -96,6 +156,5 @@
 
             });
         }
-
     }
 }

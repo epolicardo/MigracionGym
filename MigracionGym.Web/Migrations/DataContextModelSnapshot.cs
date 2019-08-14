@@ -155,6 +155,23 @@ namespace MigracionGym.Web.Migrations
                     b.ToTable("Localidades");
                 });
 
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.ParametrosSistema", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("parametro");
+
+                    b.Property<int>("valor");
+
+                    b.Property<string>("valorString");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("parametro");
+                });
+
             modelBuilder.Entity("MigracionGym.Web.Data.Entities.Productos", b =>
                 {
                     b.Property<int>("Id")

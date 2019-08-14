@@ -10,8 +10,8 @@ using MigracionGym.Web.Data;
 namespace MigracionGym.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190726012115_Inicial")]
-    partial class Inicial
+    [Migration("20190729040326_Parametros")]
+    partial class Parametros
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -155,6 +155,23 @@ namespace MigracionGym.Web.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Localidades");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.ParametrosSistema", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("parametro");
+
+                    b.Property<int>("valor");
+
+                    b.Property<string>("valorString");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("parametro");
                 });
 
             modelBuilder.Entity("MigracionGym.Web.Data.Entities.Productos", b =>

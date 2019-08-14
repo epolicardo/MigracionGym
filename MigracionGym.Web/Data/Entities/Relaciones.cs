@@ -1,6 +1,6 @@
 ﻿namespace MigracionGym.Web.Data.Entities
 {
-    internal class Relaciones
+    internal class Relaciones : IEntity
     {
     }
 }

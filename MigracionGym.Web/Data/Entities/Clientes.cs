@@ -1,6 +1,6 @@
 ﻿namespace MigracionGym.Web.Data.Entities
 {
-    public class Clientes
+    public class Clientes : IEntity
     {
     }
 }

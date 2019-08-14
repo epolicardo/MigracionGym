@@ -1,6 +1,6 @@
 ﻿namespace MigracionGym.Web.Data.Entities
 {
-    internal class Socios
+    public class Socios : IEntity
     {
     }
 }
