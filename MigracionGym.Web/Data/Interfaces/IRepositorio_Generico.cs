@@ -3,18 +3,18 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public interface IRepositorioGenerico<T> where T : class
+    public interface IRepositorio_Generico<T> where T : class
     {
-        IQueryable<T> GetAll();
+        IQueryable<T> getAll();
 
-        Task<T> GetByIdAsync(int id);
+        Task<T> getByIdAsync(int id);
 
-        Task CreateAsync(T entity);
+        Task createAsync(T entity);
 
-        Task UpdateAsync(T entity);
+        Task updateAsync(T entity);
 
-        Task DeleteAsync(T entity);
+        Task deleteAsync(T entity);
 
-        Task<bool> ExistsAsync(int id);
+        Task<bool> existsAsync(int id);
     }
 }

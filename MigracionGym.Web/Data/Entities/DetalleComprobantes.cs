@@ -1,9 +1,10 @@
-﻿using MigracionGym.Data.Entities;
-
-namespace MigracionGym.Web.Data.Entities
+﻿namespace MigracionGym.Web.Data.Entities
 {
+using MigracionGym.Data;
+
     public class DetalleComprobantes : IEntity
     {
-        public int Id { get; set; }
+        public int id { get; set; }
+
     }
 }

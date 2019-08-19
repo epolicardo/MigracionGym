@@ -1,15 +1,15 @@
-﻿using MigracionGym.Data.Entities;
-namespace MigracionGym.Web.Data.Entities
+﻿namespace MigracionGym.Web.Data.Entities
 {
+    using MigracionGym.Data;
     using System;
 
     public class Cheques : IEntity
     {
-        public int Id { get; set; }
-        public Clientes idCliente { get; set; }
-        public string Banco { get; set; }
-        public string Plaza { get; set; }
-        public DateTime FechaCobro { get; set; }
-        public decimal Importe { get; set; }
+        public int id { get; set; }
+        public Clientes cliente { get; set; }
+        public string banco { get; set; }
+        public string plaza { get; set; }
+        public DateTime fechaCobro { get; set; }
+        public decimal importe { get; set; }
     }
 }

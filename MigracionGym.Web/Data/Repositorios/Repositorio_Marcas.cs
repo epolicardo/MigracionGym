@@ -4,7 +4,7 @@
     using Entities;
     using MigracionGym.Data;
 
-    public class Repositorio_Marcas : Repositorio_Generico<Marcas>, IRepositorio_Marcas
+    public class Repositorio_Marcas : Repositorio_Generico<Marcas>, IRepositorioMarcas
     {
         public Repositorio_Marcas(DataContext context) : base(context)
         {

@@ -15,7 +15,7 @@ namespace MigracionGym.Web.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -129,35 +129,303 @@ namespace MigracionGym.Web.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Estados", b =>
+            modelBuilder.Entity("MigracionGym.Data.Entity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Estado");
+                    b.HasKey("id");
 
-                    b.HasKey("Id");
+                    b.ToTable("entity");
+                });
 
-                    b.ToTable("Estados");
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Actividades", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("id");
+
+                    b.ToTable("actividades");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.ActividadesSociosTurnos", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("id");
+
+                    b.ToTable("actividadesSociosTurnos");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Asistencias", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("actividadid");
+
+                    b.Property<int?>("asistenciaid");
+
+                    b.Property<DateTime>("fecha");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("actividadid");
+
+                    b.HasIndex("asistenciaid");
+
+                    b.ToTable("asistencias");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.CajaDiaria", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("categoria");
+
+                    b.Property<string>("concepto");
+
+                    b.Property<float>("debe");
+
+                    b.Property<DateTime>("fecha");
+
+                    b.Property<int?>("formaPagoid");
+
+                    b.Property<decimal>("haber");
+
+                    b.Property<decimal>("saldo");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("formaPagoid");
+
+                    b.ToTable("cajaDiarias");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Cheques", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("banco");
+
+                    b.Property<int?>("clienteid");
+
+                    b.Property<DateTime>("fechaCobro");
+
+                    b.Property<decimal>("importe");
+
+                    b.Property<string>("plaza");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("clienteid");
+
+                    b.ToTable("cheques");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Clientes", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("id");
+
+                    b.ToTable("clientes");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Compras", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("cantItem");
+
+                    b.Property<int?>("comprobantesid");
+
+                    b.Property<DateTime>("fecha");
+
+                    b.Property<int?>("formaPagoid");
+
+                    b.Property<decimal>("importeTotal");
+
+                    b.Property<int?>("proveedoresid");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("comprobantesid");
+
+                    b.HasIndex("formaPagoid");
+
+                    b.HasIndex("proveedoresid");
+
+                    b.ToTable("compras");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Comprobantes", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("detalleComprobantesid");
+
+                    b.Property<DateTime>("fechaEmision");
+
+                    b.Property<int>("nroComprobante");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("detalleComprobantesid");
+
+                    b.ToTable("comprobantes");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.DetalleComprobantes", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("id");
+
+                    b.ToTable("detalleComprobantes");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Domicilios", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("barrio");
+
+                    b.Property<string>("calle");
+
+                    b.Property<string>("codigoPostal");
+
+                    b.Property<string>("dpto");
+
+                    b.Property<int?>("localidadid");
+
+                    b.Property<string>("nro");
+
+                    b.Property<string>("piso");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("localidadid");
+
+                    b.ToTable("domicilios");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.EstadoCivil", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("id");
+
+                    b.ToTable("estadoCivils");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Estados", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("estado");
+
+                    b.HasKey("id");
+
+                    b.ToTable("estados");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.FormaPago", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("codigo");
+
+                    b.Property<string>("nombre");
+
+                    b.HasKey("id");
+
+                    b.ToTable("formaPagos");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Gastos", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("concepto");
+
+                    b.Property<DateTime>("fecha");
+
+                    b.Property<decimal>("importe");
+
+                    b.Property<int>("tipo");
+
+                    b.HasKey("id");
+
+                    b.ToTable("gastos");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Horarios", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("id");
+
+                    b.ToTable("horarios");
                 });
 
             modelBuilder.Entity("MigracionGym.Web.Data.Entities.Localidades", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name");
+                    b.Property<string>("nombre");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
-                    b.ToTable("Localidades");
+                    b.ToTable("localidades");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Marcas", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("id");
+
+                    b.ToTable("marcas");
                 });
 
             modelBuilder.Entity("MigracionGym.Web.Data.Entities.ParametrosSistema", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -167,53 +435,151 @@ namespace MigracionGym.Web.Migrations
 
                     b.Property<string>("valorString");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
-                    b.ToTable("parametro");
+                    b.ToTable("parametrosSistemas");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Personas", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("apellido");
+
+                    b.Property<string>("dni");
+
+                    b.Property<DateTime>("fechaNacimiento");
+
+                    b.Property<int?>("lugarNacimientoid");
+
+                    b.Property<string>("nombre");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("lugarNacimientoid");
+
+                    b.ToTable("personas");
                 });
 
             modelBuilder.Entity("MigracionGym.Web.Data.Entities.Productos", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ImageURL");
+                    b.Property<string>("imageURL");
 
-                    b.Property<bool>("IsAvailable");
+                    b.Property<bool>("isAvailable");
 
-                    b.Property<string>("Nombre")
+                    b.Property<string>("nombre")
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<decimal>("Precio");
+                    b.Property<decimal>("precio");
 
-                    b.Property<double>("Stock");
+                    b.Property<double>("stockActual");
 
-                    b.Property<DateTime?>("UltimaCompra");
+                    b.Property<double>("stockMinimo");
 
-                    b.Property<DateTime?>("UltimaVenta");
+                    b.Property<double>("stockOptimo");
+
+                    b.Property<DateTime?>("ultimaCompra");
+
+                    b.Property<DateTime?>("ultimaVenta");
 
                     b.Property<string>("usuarioId");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.HasIndex("usuarioId");
 
-                    b.ToTable("Productos");
+                    b.ToTable("productos");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Profesores", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("id");
+
+                    b.ToTable("profesores");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Proveedores", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("id");
+
+                    b.ToTable("proveedores");
                 });
 
             modelBuilder.Entity("MigracionGym.Web.Data.Entities.Provincias", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Nombre");
+                    b.Property<string>("nombre");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
-                    b.ToTable("Provincias");
+                    b.ToTable("provincias");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.RegistroCuotas", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("fecha");
+
+                    b.Property<int?>("formaPagoid");
+
+                    b.Property<decimal>("importe");
+
+                    b.Property<string>("observaciones");
+
+                    b.Property<int?>("socioid");
+
+                    b.Property<DateTime>("vencimientoAbonado");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("formaPagoid");
+
+                    b.HasIndex("socioid");
+
+                    b.ToTable("registroCuotas");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Relaciones", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("id");
+
+                    b.ToTable("relaciones");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Socios", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("id");
+
+                    b.ToTable("socios");
                 });
 
             modelBuilder.Entity("MigracionGym.Web.Data.Entities.Usuarios", b =>
@@ -222,8 +588,6 @@ namespace MigracionGym.Web.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
-
-                    b.Property<string>("Apellido");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -236,8 +600,6 @@ namespace MigracionGym.Web.Migrations
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("Nombre");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
@@ -258,6 +620,10 @@ namespace MigracionGym.Web.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
 
+                    b.Property<string>("apellido");
+
+                    b.Property<string>("nombre");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -269,6 +635,17 @@ namespace MigracionGym.Web.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Ventas", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("id");
+
+                    b.ToTable("ventas");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -316,11 +693,83 @@ namespace MigracionGym.Web.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Asistencias", b =>
+                {
+                    b.HasOne("MigracionGym.Web.Data.Entities.Actividades", "actividad")
+                        .WithMany()
+                        .HasForeignKey("actividadid");
+
+                    b.HasOne("MigracionGym.Web.Data.Entities.Asistencias", "asistencia")
+                        .WithMany()
+                        .HasForeignKey("asistenciaid");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.CajaDiaria", b =>
+                {
+                    b.HasOne("MigracionGym.Web.Data.Entities.FormaPago", "formaPago")
+                        .WithMany()
+                        .HasForeignKey("formaPagoid");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Cheques", b =>
+                {
+                    b.HasOne("MigracionGym.Web.Data.Entities.Clientes", "cliente")
+                        .WithMany()
+                        .HasForeignKey("clienteid");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Compras", b =>
+                {
+                    b.HasOne("MigracionGym.Web.Data.Entities.Comprobantes", "comprobantes")
+                        .WithMany()
+                        .HasForeignKey("comprobantesid");
+
+                    b.HasOne("MigracionGym.Web.Data.Entities.FormaPago", "formaPago")
+                        .WithMany()
+                        .HasForeignKey("formaPagoid");
+
+                    b.HasOne("MigracionGym.Web.Data.Entities.Proveedores", "proveedores")
+                        .WithMany()
+                        .HasForeignKey("proveedoresid");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Comprobantes", b =>
+                {
+                    b.HasOne("MigracionGym.Web.Data.Entities.DetalleComprobantes", "detalleComprobantes")
+                        .WithMany()
+                        .HasForeignKey("detalleComprobantesid");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Domicilios", b =>
+                {
+                    b.HasOne("MigracionGym.Web.Data.Entities.Localidades", "localidad")
+                        .WithMany()
+                        .HasForeignKey("localidadid");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Personas", b =>
+                {
+                    b.HasOne("MigracionGym.Web.Data.Entities.Localidades", "lugarNacimiento")
+                        .WithMany()
+                        .HasForeignKey("lugarNacimientoid");
+                });
+
             modelBuilder.Entity("MigracionGym.Web.Data.Entities.Productos", b =>
                 {
                     b.HasOne("MigracionGym.Web.Data.Entities.Usuarios", "usuario")
                         .WithMany()
                         .HasForeignKey("usuarioId");
+                });
+
+            modelBuilder.Entity("MigracionGym.Web.Data.Entities.RegistroCuotas", b =>
+                {
+                    b.HasOne("MigracionGym.Web.Data.Entities.FormaPago", "formaPago")
+                        .WithMany()
+                        .HasForeignKey("formaPagoid");
+
+                    b.HasOne("MigracionGym.Web.Data.Entities.Socios", "socio")
+                        .WithMany()
+                        .HasForeignKey("socioid");
                 });
 #pragma warning restore 612, 618
         }

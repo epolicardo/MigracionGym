@@ -2,7 +2,6 @@
 {
 
     using Entities;
-    using MigracionGym.Data.Repositorios;
     using MigracionGym.Data;
 
     public class Repositorio_Asistencias : Repositorio_Generico<Asistencias>, IRepositorio_Asistencias

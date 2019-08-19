@@ -9,9 +9,9 @@
     [ApiController]
     public class ProductosController : Controller
     {
-        private readonly IRepositorioProductos repositorioProductos;
+        private readonly IRepositorio_Productos repositorioProductos;
 
-        public ProductosController(IRepositorioProductos repositorioProductos)
+        public ProductosController(IRepositorio_Productos repositorioProductos)
         {
             this.repositorioProductos = repositorioProductos;
         }
@@ -28,7 +28,7 @@
         [HttpGet("{id}", Name = "Get")]
         public Task<Productos> Get(int id)
         {
-            return this.repositorioProductos.GetByIdAsync(id);
+            return this.repositorioProductos.getByIdAsync(id);
 
         }
 

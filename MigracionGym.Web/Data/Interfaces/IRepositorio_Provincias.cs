@@ -2,7 +2,7 @@
 {
     using MigracionGym.Web.Data.Entities;
 
-    public interface I_R_Provincias : IRepositorioGenerico<Provincias>
+    public interface IRepositorio_Provincias : IRepositorio_Generico<Provincias>
     {
 
     }

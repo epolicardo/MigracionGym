@@ -1,15 +1,12 @@
-﻿using MigracionGym.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MigracionGym.Web.Data.Entities
+﻿namespace MigracionGym.Web.Data.Entities
 {
+
+using MigracionGym.Data;
+
     public class EstadoCivil : IEntity
     {
-        public int Id { get; set; }
-        private string estadoCivil { get; set; }
+        public int id { get; set; }
+        private EstadoCivil estadoCivil { get; set; }
         private Personas personas { get; set; }
     }
 }

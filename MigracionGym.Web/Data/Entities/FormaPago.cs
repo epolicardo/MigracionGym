@@ -1,11 +1,11 @@
-﻿using MigracionGym.Data.Entities;
-
-namespace MigracionGym.Web.Data.Entities
+﻿namespace MigracionGym.Web.Data.Entities
 {
+    using MigracionGym.Data;
+
     public class FormaPago : IEntity
     {
-        public int Id { get; set; }
-        public int Codigo { get; set; }
-        public string Nombre { get; set; }
+        public int id { get; set; }
+        public int codigo { get; set; }
+        public string nombre { get; set; }
     }
 }

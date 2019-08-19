@@ -2,7 +2,7 @@
 {
     using Entities;
 
-    public interface IRepositorioMarcas : IRepositorioGenerico<Marcas>
+    public interface IRepositorioMarcas : IRepositorio_Generico<Marcas>
     {
     }
 }

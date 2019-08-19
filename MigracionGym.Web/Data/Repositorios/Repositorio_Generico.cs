@@ -1,10 +1,10 @@
 ﻿namespace MigracionGym.Data
 {
-    using Entities;
     using Microsoft.EntityFrameworkCore;
+    using MigracionGym.Web.Data;
     using System.Linq;
     using System.Threading.Tasks;
-    using Web.Data;
+
 
     public class Repositorio_Generico<T> : IRepositorio_Generico<T> where T : class, IEntity
     {
@@ -15,47 +15,53 @@
             this.context = context;
         }
 
-        public IQueryable<T> GetAll()
+        public Repositorio_Generico()
+        {
+        }
+
+        public IQueryable<T> getAll()
         {
             return this.context.Set<T>().AsNoTracking();
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> getByIdAsync(int id)
         {
             return await this.context.Set<T>()
                     .AsNoTracking()
-                    .FirstOrDefaultAsync(e => e.Id == id);
+                    .FirstOrDefaultAsync(e => e.id == id);
         }
 
-        public async Task CreateAsync(T entity)
+        public async Task createAsync(T entity)
         {
             await this.context.Set<T>().AddAsync(entity);
-            await SaveAllAsync();
+            await saveAllAsync();
+//            return entity;
         }
 
-        public async Task UpdateAsync(T entity)
+        public async Task updateAsync(T entity)
         {
             this.context.Set<T>().Update(entity);
-            await SaveAllAsync();
+            await saveAllAsync();
+            //return entity;
         }
 
-        public async Task DeleteAsync(T entity)
+        public async Task deleteAsync(T entity)
         {
             this.context.Set<T>().Remove(entity);
-            await SaveAllAsync();
+            await saveAllAsync();
         }
 
-        public async Task<bool> ExistsAsync(int id)
+        public async Task<bool> existsAsync(int id)
         {
             return await this.context.Set<T>()
-                .AnyAsync(e => e.Id == id);
+                .AnyAsync(e => e.id == id);
 
         }
-
-        private async Task<bool> SaveAllAsync()
+        private async Task<bool> saveAllAsync()
         {
             return await this.context.SaveChangesAsync() > 0;
         }
+
 
     }
 }

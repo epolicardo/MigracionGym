@@ -84,10 +84,10 @@
                 {
                     user = new Usuarios
                     {
-                        Apellido = "Policardo",
-                        Nombre = "Emiliano",
-                        Email = "emilianopolicardo@gmail.com",
-                        UserName = "emilianopolicardo@gmail.com"
+                        apellido = "Policardo",
+                        nombre = "Emiliano",
+                        NormalizedEmail = "emilianopolicardo@gmail.com",
+                        NormalizedUserName = "emilianopolicardo@gmail.com"
                     };
 
 
@@ -100,7 +100,7 @@
                     }
 
                     // Chequea la existencia de algun registro en la coleccion Productos
-                    if (!this.context.Productos.Any())
+                    if (!this.context.productos.Any())
                     {
                         this.AddProduct("Iphone 6", user);
                         this.AddProduct("Iphone X", user);
@@ -109,7 +109,7 @@
                         // Realiza el guardado en la base de datos de forma asincrona.
                         await this.context.SaveChangesAsync();
                     }
-                    if (!this.context.Estados.Any())
+                    if (!this.context.estados.Any())
                     {
                         this.AddEstado("Activo");
                         this.AddEstado("Inactivo");
@@ -122,7 +122,7 @@
         
         private void SetearParametrosIniciales(ParametrosSistema nuevoParametro)
         {
-            this.context.parametro.Add(new ParametrosSistema
+            this.context.parametrosSistemas.Add(new ParametrosSistema
             {
                 valor = nuevoParametro.valor,
                 valorString = nuevoParametro.valorString,
@@ -134,9 +134,9 @@
 
         private void AddEstado(string Estado)
         {
-            this.context.Estados.Add(new Estados
+            this.context.estados.Add(new Estados
             {
-                Estado = Estado
+                estado = Estado
             });
 
         }
@@ -147,11 +147,11 @@
         /// <param name="nombre"></param>
         private void AddProduct(string nombre, Usuarios user)
         {
-            this.context.Productos.Add(new Productos
+            this.context.productos.Add(new Productos
             {
-                Nombre = nombre,
-                Stock = this.random.Next(1, 10),
-                ImageURL = "//images/" + nombre,
+                nombre = nombre,
+                stockActual = this.random.Next(1, 10),
+                imageURL = "//images/" + nombre,
                 usuario = user
 
             });

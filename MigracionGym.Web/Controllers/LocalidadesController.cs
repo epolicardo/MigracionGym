@@ -8,10 +8,10 @@
 
     public class LocalidadesController : Controller
     {
-        private readonly IRepositorioLocalidades repositorio;
+        private readonly IRepositorio_Localidades repositorio;
         
 
-        public LocalidadesController(IRepositorioLocalidades repositorio)
+        public LocalidadesController(IRepositorio_Localidades repositorio)
         {
             this.repositorio = repositorio;
         
@@ -20,7 +20,7 @@
         // GET: Productos
         public IActionResult Index()
         {
-            return View(this.repositorio.GetAll());
+            return View(this.repositorio.getAll());
         }
 
         // GET: Productos/Details/5
@@ -31,7 +31,7 @@
                 return NotFound();
             }
 
-            var objeto = this.repositorio.GetByIdAsync(id.Value);
+            var objeto = this.repositorio.getByIdAsync(id.Value);
             if (objeto == null)
             {
                 return NotFound();
@@ -53,7 +53,7 @@
         {
             if (ModelState.IsValid)
             {
-                await this.repositorio.CreateAsync(localidad);
+                await this.repositorio.createAsync(localidad);
                 return RedirectToAction(nameof(Index));
             }
             return View(localidad);
@@ -67,7 +67,7 @@
                 return NotFound();
             }
 
-            var objeto = await this.repositorio.GetByIdAsync(id.Value);
+            var objeto = await this.repositorio.getByIdAsync(id.Value);
             if (objeto == null)
             {
                 return NotFound();
@@ -86,11 +86,11 @@
                 try
                 {
                     //TODO: Cambiar por usuario logueado
-                    await this.repositorio.UpdateAsync(objeto);
+                    await this.repositorio.updateAsync(objeto);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!await this.repositorio.ExistsAsync(objeto.Id))
+                    if (!await this.repositorio.existsAsync(objeto.id))
                     {
                         return NotFound();
                     }
@@ -113,7 +113,7 @@
                 return NotFound();
             }
 
-            var objeto = await this.repositorio.GetByIdAsync(id.Value);
+            var objeto = await this.repositorio.getByIdAsync(id.Value);
             if (objeto == null)
             {
                 return NotFound();
@@ -127,14 +127,14 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var objeto = await this.repositorio.GetByIdAsync(id);
-            await this.repositorio.DeleteAsync(objeto);
+            var objeto = await this.repositorio.getByIdAsync(id);
+            await this.repositorio.deleteAsync(objeto);
             return RedirectToAction(nameof(Index));
         }
 
         private async Task<bool> ExistsAsync(int id)
         {
-            return await this.repositorio.ExistsAsync(id);
+            return await this.repositorio.existsAsync(id);
         }
     }
 }

@@ -1,6 +1,9 @@
 ﻿namespace MigracionGym.Web.Data.Entities
 {
-    internal class Profesores : IEntity
+    using MigracionGym.Data;
+
+    public class Profesores : IEntity
     {
+        public int id { get; set; }
     }
 }

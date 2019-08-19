@@ -1,8 +1,8 @@
-﻿namespace MigracionGym.Web.Data
-{
-    using Entities;
+﻿using MigracionGym.Web.Data.Entities;
 
-    public interface IRepositorioLocalidades : IRepositorioGenerico<Localidades>
+namespace MigracionGym.Web.Data
+{
+    public interface IRepositorio_Localidades : IRepositorio_Generico<Localidades>
     {
     }
 }

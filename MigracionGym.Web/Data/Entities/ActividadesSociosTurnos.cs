@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MigracionGym.Web.Data.Entities
+﻿namespace MigracionGym.Web.Data.Entities
 {
-    public class ActividadesSociosTurnos : Ientity
+    using MigracionGym.Data;
+
+    public class ActividadesSociosTurnos : IEntity
     {
-        private int idRelacion;
-        private Socios socio;
-        private Relaciones relacion;
-        private int Pases;
-        private int paseLibre;
+        public int id { get; set; }
+        private Socios socio { get; set; }
+        private Relaciones relacion { get; set; }
+        private int pases { get; set; }
+        private int paseLibre { get; set; }
+
     }
 }

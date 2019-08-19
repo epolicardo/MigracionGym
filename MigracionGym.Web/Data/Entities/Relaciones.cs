@@ -1,6 +1,9 @@
-﻿namespace MigracionGym.Web.Data.Entities
+﻿using MigracionGym.Data;
+
+namespace MigracionGym.Web.Data.Entities
 {
-    internal class Relaciones : IEntity
+    public class Relaciones : IEntity
     {
+        public int id { get; set; }
     }
 }

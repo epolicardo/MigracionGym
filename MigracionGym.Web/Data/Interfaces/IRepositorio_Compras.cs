@@ -1,7 +1,9 @@
 ﻿namespace MigracionGym.Web.Data
 {
-    using Entities;
-    public interface IRepositorioCompras : IRepositorioGenerico<Compras>
+    
+using MigracionGym.Web.Data.Entities;
+
+    public interface IRepositorio_Compras : IRepositorio_Generico<Compras>
     {
     }
 }

@@ -11,11 +11,10 @@
 
     public class ProductosController : Controller
     {
-        private readonly IRepositorioProductos repositorio;
+        private readonly IRepositorio_Productos repositorio;
         private readonly IUserHelper userHelper;
-        private object view;
 
-        public ProductosController(IRepositorioProductos repositorio, IUserHelper userHelper)
+        public ProductosController(IRepositorio_Productos repositorio, IUserHelper userHelper)
         {
             this.repositorio = repositorio;
             this.userHelper = userHelper;
@@ -35,7 +34,7 @@
                 return NotFound();
             }
 
-            var productos = this.repositorio.GetByIdAsync(id.Value);
+            var productos = this.repositorio.getByIdAsync(id.Value);
             if (productos == null)
             {
                 return NotFound();
@@ -77,8 +76,8 @@
                 {
                     user = new Usuarios
                     {
-                        Apellido = "Policardo",
-                        Nombre = "Emiliano",
+                        apellido = "Policardo",
+                        nombre = "Emiliano",
                         Email = "emilianopolicardo@gmail.com",
                         UserName = "emilianopolicardo@gmail.com"
                     };
@@ -89,7 +88,7 @@
 
                 }
 
-                await this.repositorio.CreateAsync(producto);
+                await this.repositorio.createAsync(producto);
                 return RedirectToAction(nameof(Index));
             }
             return View(view);
@@ -99,14 +98,16 @@
         {
             return new Productos
             {
-                Id = view.Id,
-                ImageURL = path,
-                IsAvailable = view.IsAvailable,
-                Nombre = view.Nombre,
-                Precio = view.Precio,
-                Stock = view.Stock,
-                UltimaCompra = view.UltimaCompra,
-                UltimaVenta = view.UltimaVenta,
+                id = view.id,
+                imageURL = path,
+                isAvailable = view.isAvailable,
+                nombre = view.nombre,
+                precio = view.precio,
+                stockActual = view.stockActual,
+                stockMinimo = view.stockMinimo,
+                stockOptimo = view.stockOptimo,
+                ultimaCompra = view.ultimaCompra,
+                ultimaVenta = view.ultimaVenta,
                 usuario = view.usuario
 
             };
@@ -120,7 +121,7 @@
                 return NotFound();
             }
 
-            var productos = await this.repositorio.GetByIdAsync(id.Value);
+            var productos = await this.repositorio.getByIdAsync(id.Value);
             if (productos == null)
             {
                 return NotFound();
@@ -134,14 +135,17 @@
         {
             return new ProductViewModel
             {
-                Id = productos.Id,
-                ImageURL = productos.ImageURL,
-                IsAvailable = productos.IsAvailable,
-                Nombre = productos.Nombre,
-                Precio = productos.Precio,
-                Stock = productos.Stock,
-                UltimaCompra = productos.UltimaCompra,
-                UltimaVenta = productos.UltimaVenta,
+                id = productos.id,
+                imageURL = productos.imageURL,
+                isAvailable = productos.isAvailable,
+                nombre = productos.nombre,
+                precio = productos.precio,
+                stockActual = productos.stockActual,
+                stockOptimo = productos.stockOptimo,
+                stockMinimo = productos.stockMinimo,
+
+                ultimaCompra = productos.ultimaCompra,
+                ultimaVenta = productos.ultimaVenta,
                 usuario = productos.usuario
             };
         }
@@ -156,7 +160,7 @@
             {
                 try
                 {
-                    var path = view.ImageURL;
+                    var path = view.imageURL;
                     if (view.ImageFile != null && view.ImageFile.Length > 0)
                     {
                         path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\imagenes\\productos",
@@ -171,11 +175,11 @@
                     var producto = this.toProductos(view, path);
                     //TODO: Cambiar por usuario logueado
                     // productos.usuario = await this.userHelper.GetUserByEmailAsync("emilianopolicardo@gmail.com");
-                    await this.repositorio.UpdateAsync(producto);
+                    await this.repositorio.updateAsync(producto);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!await this.repositorio.ExistsAsync(view.Id))
+                    if (!await this.repositorio.existsAsync(view.id))
                     {
                         return NotFound();
                     }
@@ -198,7 +202,7 @@
                 return NotFound();
             }
 
-            var productos = await this.repositorio.GetByIdAsync(id.Value);
+            var productos = await this.repositorio.getByIdAsync(id.Value);
             if (productos == null)
             {
                 return NotFound();
@@ -212,14 +216,14 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var producto = await this.repositorio.GetByIdAsync(id);
-            await this.repositorio.DeleteAsync(producto);
+            var producto = await this.repositorio.getByIdAsync(id);
+            await this.repositorio.deleteAsync(producto);
             return RedirectToAction(nameof(Index));
         }
 
         private async Task<bool> ProductosExistsAsync(int id)
         {
-            return await this.repositorio.ExistsAsync(id);
+            return await this.repositorio.existsAsync(id);
         }
     }
 }

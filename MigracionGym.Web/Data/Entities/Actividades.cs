@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-
-namespace MigracionGym.Web.Data.Entities
+﻿namespace MigracionGym.Web.Data.Entities
 {
-    public class Actividades : Ientity
+    using System;
+    using MigracionGym.Data;
+
+    public class Actividades : IEntity
     {
-        public int Id { get; set; }
-        private string Actividad { get; set; }
+        public int id { get; set; }      
+        private string actividad { get; set; }
         private Profesores profesores { get; set; }
 
     }
