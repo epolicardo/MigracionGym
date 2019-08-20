@@ -5,5 +5,7 @@
     public class Profesores : IEntity
     {
         public int id { get; set; }
+
+        public Personas personas;
     }
 }

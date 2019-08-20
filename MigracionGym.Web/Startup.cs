@@ -50,8 +50,7 @@
 
             //TODO: Agregar la inyeccion de cada modelo, a travez de su interfaz y repositorio.
             services.AddScoped<IRepositorio_Productos, Repositorio_Productos>();
-            services.AddScoped<IRepositorio_Localidades, Repositorio_Localidades>();
-            services.AddScoped<IRepositorio_Provincias, Repositorio_Provincias>();
+            services.AddScoped<IRepositorio_Gastos, Repositorio_Gastos>();
             services.AddScoped<IUserHelper, UserHelper>();
             services.Configure<CookiePolicyOptions>(options =>
             {

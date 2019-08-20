@@ -10,5 +10,6 @@
         public string concepto { get; set; }
         public decimal importe { get; set; }
         public int tipo { get; set; }
+        public Usuarios usuario { get; set; }
     }
 }

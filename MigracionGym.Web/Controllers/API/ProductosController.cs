@@ -9,11 +9,11 @@
     [ApiController]
     public class ProductosController : Controller
     {
-        private readonly IRepositorio_Productos repositorioProductos;
+        private readonly IRepositorio_Productos repositorio;
 
-        public ProductosController(IRepositorio_Productos repositorioProductos)
+        public ProductosController(IRepositorio_Productos repositorio)
         {
-            this.repositorioProductos = repositorioProductos;
+            this.repositorio = repositorio;
         }
 
 
@@ -21,14 +21,14 @@
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(this.repositorioProductos.GetAllWithUsers());
+            return Ok(this.repositorio.GetAllWithUsers());
         }
 
         //GET: api/Productos/5
         [HttpGet("{id}", Name = "Get")]
         public Task<Productos> Get(int id)
         {
-            return this.repositorioProductos.getByIdAsync(id);
+            return this.repositorio.getByIdAsync(id);
 
         }
 
@@ -39,16 +39,5 @@
 
         }
 
-        //// PUT: api/Productos/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE: api/ApiWithActions/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
-    }
+        }
 }

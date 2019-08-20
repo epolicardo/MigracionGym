@@ -6,8 +6,8 @@
     public class Actividades : IEntity
     {
         public int id { get; set; }      
-        private string actividad { get; set; }
-        private Profesores profesores { get; set; }
+        public string actividad { get; set; }
+        public Profesores profesores { get; set; }
 
     }
 }

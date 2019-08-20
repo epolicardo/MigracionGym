@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MigracionGym.Web.Data;
 
 namespace MigracionGym.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20190820014447_Gastos con usuarios")]
+    partial class Gastosconusuarios
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -389,11 +391,7 @@ namespace MigracionGym.Web.Migrations
 
                     b.Property<int>("tipo");
 
-                    b.Property<string>("usuarioId");
-
                     b.HasKey("id");
-
-                    b.HasIndex("usuarioId");
 
                     b.ToTable("gastos");
                 });
@@ -762,13 +760,6 @@ namespace MigracionGym.Web.Migrations
                     b.HasOne("MigracionGym.Web.Data.Entities.Localidades", "localidad")
                         .WithMany()
                         .HasForeignKey("localidadid");
-                });
-
-            modelBuilder.Entity("MigracionGym.Web.Data.Entities.Gastos", b =>
-                {
-                    b.HasOne("MigracionGym.Web.Data.Entities.Usuarios", "usuario")
-                        .WithMany()
-                        .HasForeignKey("usuarioId");
                 });
 
             modelBuilder.Entity("MigracionGym.Web.Data.Entities.Personas", b =>
