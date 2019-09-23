@@ -14,5 +14,6 @@
         public float debe { get; set; }
         public decimal haber { get; set; }
         public decimal saldo { get; set; }
+      
     }
 }

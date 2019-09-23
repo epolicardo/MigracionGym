@@ -1,0 +1,73 @@
+﻿@model MigracionGym.Web.Data.Entities.Productos
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Productos</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.precio)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.precio)
+        </dd>
+        @*<dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.imageURL)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.imageURL)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ultimaVenta)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ultimaVenta)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ultimaCompra)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ultimaCompra)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.isAvailable)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.isAvailable)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.stockActual)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.stockActual)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.stockOptimo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.stockOptimo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.stockMinimo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.stockMinimo)
+        </dd>*@
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

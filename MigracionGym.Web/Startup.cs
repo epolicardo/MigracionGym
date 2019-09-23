@@ -39,6 +39,8 @@
             services.AddDbContext<DataContext>(cfg =>
             {
                 cfg.UseSqlServer(this.Configuration.GetConnectionString("ConexionPrincipal"));
+
+               // cfg.UseMySql(this.Configuration.GetConnectionString("ConexionPrincipal"));
             });
 
 

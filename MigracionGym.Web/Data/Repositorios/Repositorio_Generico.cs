@@ -21,7 +21,9 @@
 
         public IQueryable<T> getAll()
         {
-            return this.context.Set<T>().AsNoTracking();
+            //return this.context.Set<T>().AsNoTracking();
+            return this.context.Set<T>();
+
         }
 
         public async Task<T> getByIdAsync(int id)

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<MigracionGym.Web.Data.Entities.Productos>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.imageURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ultimaVenta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ultimaCompra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isAvailable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.stockActual)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.stockOptimo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.stockMinimo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.imageURL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ultimaVenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ultimaCompra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isAvailable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.stockActual)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.stockOptimo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.stockMinimo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

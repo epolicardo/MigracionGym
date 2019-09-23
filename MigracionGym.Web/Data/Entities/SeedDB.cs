@@ -21,8 +21,6 @@
 
         /// <summary>
         /// Alimentar base de datos con informacion generica
-        /// 
-        /// 
         /// </summary>
         /// <returns></returns>
         public async Task SeedAsync()
@@ -84,12 +82,13 @@
                 {
                     user = new Usuarios
                     {
+                        UserName = "emilianopolicardo@gmail.com",
+                        Email= "emilianopolicardo@gmail.com",
                         apellido = "Policardo",
                         nombre = "Emiliano",
                         NormalizedEmail = "emilianopolicardo@gmail.com",
                         NormalizedUserName = "emilianopolicardo@gmail.com"
                     };
-
 
                     var result = await this.userHelper.AddUserAsync(user, "123456");
                     await this.context.SaveChangesAsync();

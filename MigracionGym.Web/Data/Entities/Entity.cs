@@ -7,5 +7,13 @@
     public class Entity : IEntity
     {
         public int id { get; set; }
+
+
     }
 }
+
+
+
+
+
+
